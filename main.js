@@ -23,53 +23,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Video Modal Logic
-    const videoTriggers = document.querySelectorAll('.video-preview-trigger');
-    const modalOverlay = document.getElementById('video-modal');
-    const modalVideo = document.getElementById('modal-video');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const muteBtn = document.getElementById('mute-btn');
-    const iconUnmuted = document.getElementById('icon-unmuted');
-    const iconMuted = document.getElementById('icon-muted');
+    // Iframe Video Modal Logic
+    const iframeShields = document.querySelectorAll('.iframe-click-shield');
+    const videoModal = document.getElementById('videoModal');
+    const modalIframe = document.getElementById('modalIframe');
+    const closeModalBtn = document.getElementById('closeModal');
 
-    if (modalOverlay && modalVideo) {
+    if (videoModal && modalIframe) {
         // Open Modal
-        videoTriggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const videoSrc = trigger.getAttribute('data-video-src');
-                if (videoSrc) {
-                    modalVideo.src = videoSrc;
+        iframeShields.forEach(shield => {
+            shield.addEventListener('click', () => {
+                const iframe = shield.nextElementSibling;
+                if (iframe && iframe.tagName === 'IFRAME') {
+                    const src = iframe.getAttribute('data-src') || iframe.getAttribute('src');
+                    if (src) {
+                        modalIframe.src = src;
+                        videoModal.classList.add('active');
+                    }
                 }
-                modalOverlay.classList.add('active');
-                modalVideo.currentTime = 0; // Restart video
-                modalVideo.play();
             });
         });
 
         // Close Modal logic
-        const closeModal = () => {
-            modalOverlay.classList.remove('active');
-            modalVideo.pause();
+        const closeVideoModal = () => {
+            videoModal.classList.remove('active');
+            modalIframe.src = ''; // Clear src to stop video
         };
 
-        closeModalBtn.addEventListener('click', closeModal);
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', closeVideoModal);
+        }
 
         // Click outside video to close
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
-        });
-
-        // Mute/Unmute Logic
-        muteBtn.addEventListener('click', () => {
-            modalVideo.muted = !modalVideo.muted;
-            if (modalVideo.muted) {
-                iconUnmuted.classList.add('hidden');
-                iconMuted.classList.remove('hidden');
-            } else {
-                iconUnmuted.classList.remove('hidden');
-                iconMuted.classList.add('hidden');
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeVideoModal();
             }
         });
     }

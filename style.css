@@ -33,6 +33,8 @@ body {
 
 .site-wrapper {
     width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -1070,23 +1072,33 @@ body {
 }
 
 @media (max-width: 600px) {
-    .shorts-grid {
+    .shorts-grid, .long-grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 15px;
         padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
     
-    .shorts-grid::-webkit-scrollbar {
+    .shorts-grid::-webkit-scrollbar, .long-grid::-webkit-scrollbar {
         display: none;
     }
 
     .short-preview {
         flex: 0 0 85%; /* Show one video and peek at the next */
         scroll-snap-align: center;
+    }
+    
+    .long-preview {
+        flex: 0 0 95%;
+        scroll-snap-align: center;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
     }
 
     .mobile-scroll-indicator {

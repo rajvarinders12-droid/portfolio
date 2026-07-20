@@ -965,8 +965,9 @@ body {
     
     .massive-name {
         text-align: center;
-        font-size: 11vw; /* Reduced font size for mobile */
+        font-size: 12vw; /* Reduced font size for mobile */
         white-space: normal; /* Allow name to wrap if needed on very small screens */
+        line-height: 1.1; /* Prevent text overlap when wrapped */
     }
     
     .role-title {
@@ -975,14 +976,9 @@ body {
         font-weight: 800; /* Made bolder */
         letter-spacing: 0.05em;
         padding-left: 0;
-        white-space: nowrap; /* Strictly enforce single line */
+        white-space: normal; /* Allow wrapping on very small screens */
+        line-height: 1.4;
         width: 100%;
-    }
-}
-
-@media (max-height: 700px) {
-    .photo-wrapper {
-        display: none; 
     }
 }
 

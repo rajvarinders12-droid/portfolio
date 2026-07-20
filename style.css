@@ -1002,7 +1002,7 @@ body {
         padding: 10px 20px 40px; /* Drastically reduced gap between menu icon and content */
     }
     
-    .video-section, .about-section {
+    .video-section, .about-section, .unified-portfolio {
         padding: 60px 20px;
     }
     
@@ -1044,7 +1044,7 @@ body {
     
     .timeline-item {
         width: 100%;
-        padding-left: 60px;
+        padding-left: 45px;
         padding-right: 0;
     }
     
@@ -1078,10 +1078,19 @@ body {
         scroll-snap-type: x mandatory;
         gap: 15px;
         padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
         -ms-overflow-style: none;
         scrollbar-width: none;
+    }
+    
+    .shorts-grid {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .long-grid {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        gap: 10px;
     }
     
     .shorts-grid::-webkit-scrollbar, .long-grid::-webkit-scrollbar {
@@ -1094,11 +1103,18 @@ body {
     }
     
     .long-preview {
-        flex: 0 0 95%;
+        flex: 0 0 90vw;
         scroll-snap-align: center;
+        opacity: 0.4;
+        transform: scale(0.9);
+        filter: blur(3px);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .long-preview.active-center {
         opacity: 1 !important;
-        transform: none !important;
-        filter: none !important;
+        transform: scale(1) !important;
+        filter: blur(0) !important;
     }
 
     .mobile-scroll-indicator {

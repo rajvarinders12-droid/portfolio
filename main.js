@@ -208,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (longGrid && longPreviews.length > 0) {
         const updateCoverflow = () => {
-            if (window.innerWidth < 1025) return; // Only on desktop
             const gridCenter = longGrid.getBoundingClientRect().left + (longGrid.clientWidth / 2);
             
             let closestPreview = null;
